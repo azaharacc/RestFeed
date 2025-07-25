@@ -1,0 +1,9 @@
+.quote-container {
+  border: 2px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+}
+.quote-text {
+  font-style: italic;
+  color: #555;
+}
