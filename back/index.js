@@ -7,8 +7,8 @@ const { selectRandomQuote } = require("./quotesService");
 const app = express();
 
 const allowedOrigins = [
-  "https://rest-feed.vercel.app",  // Cambia aquí por tu dominio Vercel real
-  "http://localhost:3000"           // Para desarrollo local frontend
+  "https://rest-feed.vercel.app", 
+  "http://localhost:3000" 
 ];
 
 app.use(cors({
