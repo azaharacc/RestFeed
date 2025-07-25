@@ -1,4 +1,3 @@
-// index.js
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -6,15 +5,32 @@ const { createClient } = require("@supabase/supabase-js");
 const { selectRandomQuote } = require("./quotesService");
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  "https://rest-feed.vercel.app",  // Cambia aquí por tu dominio Vercel real
+  "http://localhost:3000"           // Para desarrollo local frontend
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Permite requests sin origin (ej. Postman, curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `CORS: acceso denegado a ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // solo si usas cookies o auth con sesión
+}));
+
 app.use(express.json());
 
-// Supabase para rutas públicas (ANON key)
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANONKEY
 );
-
 // ---- Rutas ----
 
 // Seleccionar cita aleatoria (usando la lógica del servicio)

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+const BACK_URL = import.meta.env.VITE_RESTFEED_BACK;
 
 function Quotes() {
   const [currentQuote, setCurrentQuote] = useState(null);
@@ -11,13 +12,19 @@ function Quotes() {
   }, []);
 
   const fetchCurrent = async () => {
-    const res = await fetch('http://localhost:3001/quotes/current');
+    // para local:
+    //const res = await fetch('http://localhost:3001/quotes/current');
+    //para railway:
+    const res = await fetch(`${BACK_URL}/quotes/current`);
     const data = await res.json();
     setCurrentQuote(data);
   };
 
   const fetchHistory = async () => {
-    const res = await fetch('http://localhost:3001/quotes/history');
+    // para local:
+    // const res = await fetch('http://localhost:3001/quotes/history');
+    //para railway:
+    const res = await fetch(`${BACK_URL}/quotes/history`);
     const data = await res.json();
     setHistory(data);
   };
