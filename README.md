@@ -2,7 +2,7 @@
 
 RestFeed is a small web application that automatically displays quotes about leisure and holidays right when I'm about to shut down my computer — marking the end of the workday. It's a just-for-fun project to add a little joy when clocking out.
 
-## Features
+## 🤖 Features
 
 - Shows quotes about rest and free time.
 
@@ -13,15 +13,15 @@ RestFeed is a small web application that automatically displays quotes about lei
 - Simple backend to manage quotes: add, edit, and delete.
 
 
-## Technologies Used
+## 💅 Technologies Used
 
 React (frontend), Node.js + Supabase (backend)
 
-## 🎭 [RestFeed](https://rest-feed.vercel.app/)
+## 📲 [RestFeed](https://rest-feed.vercel.app/)
 ![screenshot](screenshot.png)
 
 
-## How to Use
+## 🕸️ How to Use
 
 - Clone the repository.
 
@@ -33,6 +33,6 @@ React (frontend), Node.js + Supabase (backend)
 
 - Log in and enjoy your personalized quotes.
 
-## Next Steps
+## 🤜 Next Steps
 
 Improve shutdown detection to automatically show quotes on computer shutdown.
