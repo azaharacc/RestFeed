@@ -17,6 +17,10 @@ RestFeed is a small web application that automatically displays quotes about lei
 
 React (frontend), Node.js + Supabase (backend)
 
+## 🎭 [RestFeed](https://rest-feed.vercel.app/)
+![screenshot](screenshot.png)
+
+
 ## How to Use
 
 - Clone the repository.
