@@ -1,6 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
 const BACK_URL = import.meta.env.VITE_RESTFEED_BACK;
 
+function formatDate(dateString) {
+  if (!dateString) return "";
+  const d = new Date(dateString);
+
+  return `${d.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })} - ${d.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })}`;
+}
+
 function Quotes() {
   const [currentQuote, setCurrentQuote] = useState(null);
   const [history, setHistory] = useState([]);
@@ -48,9 +63,7 @@ function Quotes() {
           {currentQuote.author || 'Anónimo'}
         </p>
         <p className="text-xl text-gray-600 mt-3">
-          {currentQuote.selected_at
-            ? new Date(currentQuote.selected_at).toLocaleString()
-            : ''}
+          {currentQuote.selected_at ? formatDate(currentQuote.selected_at) : ""}
         </p>
 
         {/* Flecha hacia abajo */}
@@ -95,8 +108,8 @@ function Quotes() {
               <p className="text-sm font-bold text-gray-900 mt-2">
                 — {q.author || 'Anónimo'} ·{' '}
               <time dateTime={q.selected_at}>
-              {new Date(q.selected_at).toLocaleString()}
-            </time>
+                {formatDate(q.selected_at)}
+              </time>
               </p>
             </li>
           ))}
