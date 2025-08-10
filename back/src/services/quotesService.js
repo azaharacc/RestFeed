@@ -1,16 +1,17 @@
-// quotesService.js
-const { createClient } = require("@supabase/supabase-js");
-require("dotenv").config();
+const supabase = require("../supabaseClient");
 
-// ⚠️ Usamos la SERVICE_KEY porque necesitamos ignorar RLS desde backend/script
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
-);
+const DAY_LIMIT = 60; // días
 
 async function selectRandomQuote() {
-  // 1. Obtener todas las citas
-  const { data: quotes, error } = await supabase.from("quotes").select("*");
+  const limitDate = new Date();
+  limitDate.setDate(limitDate.getDate() - DAY_LIMIT);
+
+  // 1. Obtener solo las citas con selected_at NULL o selected_at < limitDate
+  const { data: quotes, error } = await supabase
+    .from("quotes")
+    .select("*")
+    .or(`selected_at.is.null,selected_at.lt.${limitDate.toISOString()}`);
+
   if (error) throw new Error("Error al obtener citas: " + error.message);
   if (!quotes || quotes.length === 0) return null;
 
@@ -25,7 +26,7 @@ async function selectRandomQuote() {
   // 3. Elegir aleatoriamente
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
-  // 4. Marcar la nueva cita como actual
+  // 4. Marcar la nueva cita como actual y actualizar selected_at a ahora
   const { data: updatedQuote, error: updateError } = await supabase
     .from("quotes")
     .update({ is_current: true, selected_at: new Date().toISOString() })

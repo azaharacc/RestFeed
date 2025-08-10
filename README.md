@@ -36,3 +36,4 @@ React (frontend), Node.js + Supabase (backend)
 ## 🤜 Next Steps
 
 Improve shutdown detection to automatically show quotes on computer shutdown.
+Now working via updateShutdown script.

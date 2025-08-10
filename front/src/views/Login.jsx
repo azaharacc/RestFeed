@@ -14,7 +14,7 @@ export default function Login() {
   const [quotes, setQuotes] = useState([]);
   const [newAuthor, setNewAuthor] = useState("");
 
-  // Este estado local guarda las ediciones antes de guardar en DB
+  // Este estado local guarda las ediciones antes de guardar en la Bd
   const [editedQuotes, setEditedQuotes] = useState({});
 
   useEffect(() => {
@@ -131,7 +131,7 @@ async function addQuote() {
       {
         text: quote.trim(),
         author: newAuthor.trim() || null,
-        selected_at: new Date().toISOString(),
+        selected_at: null,
         user_id: user.id,
       },
     ]);

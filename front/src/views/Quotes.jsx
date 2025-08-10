@@ -37,7 +37,7 @@ function Quotes() {
 
   const fetchHistory = async () => {
     // para local:
-    // const res = await fetch('http://localhost:3001/quotes/history');
+    //const res = await fetch('http://localhost:3001/quotes/history');
     //para railway:
     const res = await fetch(`${BACK_URL}/quotes/history`);
     const data = await res.json();
